@@ -95,10 +95,18 @@
 // List Students
         public function listStudents(){
             $conn=$this->Conn;
-            $query=$conn->prepare("select * from students");
+            $query=$conn->prepare("select students.id as id,students.name as name,students.admission_no,students.roll_no,students.photo,sections.section as section,classes.name as class from students join sections on students.section=sections.section_id join classes on students.class=classes.id");
             $query->execute();
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
+        }
+// List Students for update form
+        public function getStudentForm($id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("select admission_no as regno,roll_no as rollno,academic_year,admission_date,class,section,name,photo,gender,email,mobile,current_address as address,father_name,mother_name from students where id=$id");
+            $query->execute();
+            $row=$query->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($row);
         }
 //add students
         public function addStudents($regno,$rollno,$acayear,$addate,$class,$section,$name,$photo,$gender,$email,$mobile,$address,$fatherName,$motherName){

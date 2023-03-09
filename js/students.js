@@ -61,14 +61,14 @@ Addbtn.onclick = function () {
     });
   }
   //fetch classes for form options
-  let teacherName = document.querySelector(".addClassName");
-  if (teacherName.children.length < 2) {
+  let className = document.querySelector(".addClassName");
+  if (className.children.length < 2) {
     axios.post("action.php", "action=listClasses").then(({ data, status }) => {
       data.forEach((x) => {
         let option = document.createElement("option");
         option.setAttribute("value", x.id);
         option.appendChild(document.createTextNode(x.name));
-        teacherName.appendChild(option);
+        className.appendChild(option);
       });
     });
   }
@@ -86,9 +86,11 @@ closeBtn.onclick = function () {
 //update button
 var updateModal = document.getElementById("updateModal");
 function openModal(event) {
+  let el = event.currentTarget.parentNode.parentNode.parentNode;
+
+  let stuId = el.children[0].innerText;
   //fetch sections for form options
   let secName = document.querySelector(".updateSecName");
-  let el = event.currentTarget.parentNode.parentNode.parentNode;
   if (secName.children.length < 2) {
     axios.post("action.php", "action=listSections").then(({ data, status }) => {
       data.forEach((x) => {
@@ -98,54 +100,52 @@ function openModal(event) {
         secName.appendChild(option);
       });
     });
-  } else {
-    for (let i = 0; i < secName.children.length; i++) {
-      let x = secName.children[i];
-
-      if (!(x.innerHTML === el.children[2].innerHTML)) {
-        x.removeAttribute("selected");
-      } else if (x.innerHTML === el.children[2].innerHTML) {
-        x.setAttribute("selected", "selected");
-      }
-    }
   }
   //fetch teachers for form options
-  let teacherName = document.querySelector(".updateTeaName");
-  if (teacherName.children.length < 2) {
-    axios.post("action.php", "action=listTeachers").then(({ data, status }) => {
+  let className = document.querySelector(".updateClassName");
+  if (className.children.length < 2) {
+    axios.post("action.php", "action=listClasses").then(({ data, status }) => {
       data.forEach((x) => {
         let option = document.createElement("option");
-        option.appendChild(document.createTextNode(x.teacher));
-        option.setAttribute("value", x.teacher_id);
-        teacherName.appendChild(option);
+        option.setAttribute("value", x.id);
+        option.appendChild(document.createTextNode(x.name));
+        className.appendChild(option);
       });
     });
-  } else {
-    for (let i = 0; i < teacherName.children.length; i++) {
-      const x = teacherName.children[i];
-
-      if (!(x.innerHTML === el.children[3].innerHTML)) {
-        x.removeAttribute("selected");
-      } else if (x.innerHTML === el.children[3].innerHTML) {
-        x.setAttribute("selected", "selected");
-      }
-    }
   }
-  let classId = parseInt(el.children[0].innerText);
-  let className = el.children[1].innerText;
+  axios
+    .post("action.php", "action=getStudentForm&student_id=" + stuId)
+    .then(({ data, status }) => {
+      document.getElementById("updateStuReg").value = data?.regno;
+      document.getElementById("updateStuRoll").value = data?.rollno;
+      document.querySelector(".updateAcaYear").value = data?.academic_year;
+      document.getElementById("updateAddDate").value = data?.admission_date;
+      document.querySelector(".updateClassName").value = data?.class;
+      document.querySelector(".updateSecName").value = data?.section;
+      document.getElementById("updateStuName").value = data?.name;
+      document.getElementById("updateStuEmail").value = data?.email;
+      document.getElementById("updateStuMobile").value = data?.mobile;
+      document.getElementById("updateStuAddress").value = data?.address;
+      document.getElementById("updateStuFatherName").value = data?.father_name;
+      document.getElementById("updateStuMotherName").value = data?.mother_name;
+      if (data.gender === "female") {
+        document.getElementById("updateFemale").checked = true;
+      } else {
+        document.getElementById("updateMale").checked = true;
+      }
+    });
 
-  let formClassName = document.getElementById("updateClassName");
-  formClassName.dataset.classId = classId;
-  formClassName.value = className;
+  // // let classId = parseInt(el.children[0].innerText);
+  // // let className = el.children[1].innerText;
 
-  // console.log(typeof classId);
-  // console.log(el.children[0].innerHTML);
-  // for (let i = 0; i < 4; i++) {
-  //   let tdel = el.children[i].innerHTML;
-  //   console.log(tdel);
-  // }
-  var updateCloseBtn = document.getElementsByClassName("updateClose")[0];
+  // // console.log(typeof classId);
+  // // console.log(el.children[0].innerHTML);
+  // // for (let i = 0; i < 4; i++) {
+  // //   let tdel = el.children[i].innerHTML;
+  // //   console.log(tdel);
+  // // }
   updateModal.style.display = "flex";
+  var updateCloseBtn = document.getElementsByClassName("updateClose")[0];
   updateCloseBtn.onclick = function () {
     updateModal.style.display = "none";
   };

@@ -21,6 +21,10 @@ if(isset($_POST['action']) && $_POST['action']=='deleteClasses'){
 if(isset($_POST['action']) && $_POST['action']=='listStudents'){
     $sch->listStudents();
 }
+//get student for form update
+if(isset($_POST['action']) && $_POST['action']=='getStudentForm'){
+    $sch->getStudentForm($_POST['student_id']);
+}
 //add Students
 if(isset($_POST['action']) && $_POST['action']=='addStudents'){
     if (!$_FILES['photo']['name']=='') {

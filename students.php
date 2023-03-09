@@ -194,33 +194,159 @@
     <!-- form start -->
     <h1>Update Class</h1>
 
-<form class="survey-form" id="updateForm">
-  <div class="form-group">
-    <label
-      >Class Name
-      <input
-        id="updateClassName"
+    <form class="survey-form" id="updateForm" enctype="multipart/form-data">
+    <div class="form-group">
+        <label
+        >Registration No.
+        <input
+        id="updateStuReg"
+        name="regno"
+        type="text"
+        class="stuInput"
+        placeholder="Enter Your Name..."
+        required
+        /></label>
+    </div>
+    <div class="form-group">
+        <label
+        >Roll No.
+        <input
+        name="rollno"
+        id="updateStuRoll"
+        class="stuInput"
         type="text"
         placeholder="Enter Your Name..."
         required
+        /></label>
+    </div>
+    <div class="form-group">
+    <label>
+    Academic Year*
+      <select id="dropdown" name="acayear" class="updateAcaYear" id="updateAcaYear">
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group">
+      <label
+        >Admission Date
+        <input
+          id="updateAddDate"
+          class="stuInput"
+          type="text"
+          name="addate"
+          placeholder="Enter Date..."
+          required
+      /></label>
+    </div>
+    <div class="form-group">
+      <label>
+        Class
+        <select id="dropdown" class="updateClassName" name="class">
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        Section
+        <select id="dropdown" class="updateSecName" name="section">
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label
+        >Name
+        <input
+          id="updateStuName"
+          name="name"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Name..."
+          required
+      /></label>
+    </div>
+  <div class="form-group">
+    <label
+      >Photo
+      <input
+        name="photo"
+        id="updateStuPhoto"
+        class="stuInput"
+        type="file"
     /></label>
   </div>
   <div class="form-group">
-    <label>
-      Sections
-      <select id="dropdown" class="updateSecName">
-      </select>
-    </label>
-  </div>
+        <label>Gender
+        <div style="display: flex;">
+            <label class="radio-inline" style="margin: 0 10px;">
+                <input type="radio" name="gender" id="updateMale" value="male" required>Male
+            </label>
+            <label class="radio-inline" style="margin: 0 10px;">
+                <input type="radio" name="gender" id="updateFemale" value="female" required>Female
+            </label>
+        </div>
+        </label>
+    </div>
+    <div class="form-group">
+      <label
+        >Email
+        <input
+            name="email"
+          id="updateStuEmail"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Email..."
+      /></label>
+    </div>    <div class="form-group">
+      <label
+        >Mobile
+        <input
+            name="mobile"
+          id="updateStuMobile"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Name..."
+      /></label>
+    </div>    <div class="form-group">
+      <label
+        >Address
+        <input
+            name="address"
+          id="updateStuAddress"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Name..."
+          required
+      /></label>
+    </div>    <div class="form-group">
+      <label
+        >Father Name
+        <input
+          name="fathername"
+          id="updateStuFatherName"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Name..."
+          required
+      /></label>
+    </div>    <div class="form-group">
+      <label
+        >Mother Name
+        <input
+            name="mothername"
+          id="updateStuMotherName"
+          class="stuInput"
+          type="text"
+          placeholder="Enter Your Name..."
+          required
+      /></label>
+    </div>
   <div class="form-group">
-    <label>
-      Assign Class Teacher
-      <select id="dropdown" class="updateTeaName">
-      </select>
-    </label>
-  </div>
-  <div class="form-group">
-    <button id="updateClassSubmit" >Update Class</button>
+    <button id="updateClassSubmit" type="submit">update Student</button>
   </div>
 </form>
     <!-- form end -->
