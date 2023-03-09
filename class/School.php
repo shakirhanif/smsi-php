@@ -132,6 +132,29 @@
             $id=$conn->lastInsertId();
             echo $id;
         }
+//update students
+        public function updateStudent($regno,$rollno,$acayear,$addate,$class,$section,$name,$photo,$gender,$email,$mobile,$address,$fatherName,$motherName,$id){
+            // echo "reg". $regno . "rol" . $rollno .'acayer' . $acayear . "adate". $addate . "clas" . $class . "sec" . $section . "name" . $name . "photo" . $photo . "genfer" . $gender . "email" . $email . "mobile" . $mobile . "address" . $address . "father" . $fatherName . "mother" . $motherName ."---id---".$id;
+            $conn=$this->Conn;
+            $query=$conn->prepare("update students set name=:name,gender=:gender,photo=:photo,mobile=:mobile,email=:email,current_address=:address,father_name=:father_name,mother_name=:mother_name,admission_no=:regno,roll_no=:rollno,class=:class,section=:section,academic_year=:acayear,admission_date=:addate where id=:id");
+            $query->execute([
+                ':name'=>$name,
+                ':gender'=>$gender,
+                ':photo'=>$photo,
+                ':mobile'=>$mobile,
+                ':email'=>$email,
+                ':address'=>$address,
+                ':father_name'=>$fatherName,
+                ':mother_name'=>$motherName,
+                ':regno'=>$regno,
+                ':rollno'=>$rollno,
+                ':class'=>$class,
+                ':section'=>$section,
+                ':acayear'=>$acayear,
+                ':addate'=>$addate,
+                ':id'=>$id,
+            ]);
+        }
 // get sections
         public function listSections(){
             $conn=$this->Conn;

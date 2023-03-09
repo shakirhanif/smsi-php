@@ -128,6 +128,7 @@ function openModal(event) {
       document.getElementById("updateStuAddress").value = data?.address;
       document.getElementById("updateStuFatherName").value = data?.father_name;
       document.getElementById("updateStuMotherName").value = data?.mother_name;
+      document.getElementById("updateStudentId").value = stuId;
       if (data.gender === "female") {
         document.getElementById("updateFemale").checked = true;
       } else {
@@ -180,16 +181,18 @@ function updateFormSubmit(e) {
   e.preventDefault();
   let updateSubmitBtn = document.getElementById("updateClassSubmit");
   updateSubmitBtn.style.cursor = "not-allowed";
-  let updateFormData = new FormData();
-  let name = document.getElementById("updateClassName").value;
-  let secName = document.querySelector(".updateSecName").value;
-  let addTeaName = document.querySelector(".updateTeaName").value;
-  let classId = document.getElementById("updateClassName").dataset.classId;
-  updateFormData.append("class_id", classId);
-  updateFormData.append("name", name);
-  updateFormData.append("section_id", secName);
-  updateFormData.append("teacher_id", addTeaName);
-  updateFormData.append("action", "updateClasses");
+  let updateFormData = new FormData(e.target);
+  updateFormData.append("action", "updateStudent");
+  console.log(updateFormData);
+  // let name = document.getElementById("updateClassName").value;
+  // let secName = document.querySelector(".updateSecName").value;
+  // let addTeaName = document.querySelector(".updateTeaName").value;
+  // let classId = document.getElementById("updateClassName").dataset.classId;
+  // updateFormData.append("class_id", classId);
+  // updateFormData.append("name", name);
+  // updateFormData.append("section_id", secName);
+  // updateFormData.append("teacher_id", addTeaName);
+  // updateFormData.append("action", "updateClasses");
   axios.post("action.php", updateFormData).then(({ data, status }) => {
     fetchFunc();
     let updateModalForm = document.getElementById("updateModal");

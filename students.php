@@ -192,7 +192,7 @@
   <div class="update-modal-content">
     <span class="updateClose"><i class='bx bx-x-circle'></i></span>
     <!-- form start -->
-    <h1>Update Class</h1>
+    <h1>Update Student</h1>
 
     <form class="survey-form" id="updateForm" enctype="multipart/form-data">
     <div class="form-group">
@@ -345,6 +345,7 @@
           required
       /></label>
     </div>
+    <input type="hidden" name="id" id="updateStudentId" >
   <div class="form-group">
     <button id="updateClassSubmit" type="submit">update Student</button>
   </div>
