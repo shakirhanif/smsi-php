@@ -1,0 +1,430 @@
+/* header class */
+.header-class {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px 10px 0;
+}
+.classTitle {
+  padding: 0 10px;
+  color: #195a5c;
+  border-bottom: #514aa7 1px solid;
+  border-left: #514aa7 1px solid;
+  border-radius: 0 0 0 6px;
+  font-size: large;
+  font-weight: 700;
+}
+
+.responstable {
+  margin: 1em 0;
+  width: 100%;
+  overflow: auto;
+  background: #fff;
+  color: #024457;
+  border-radius: 10px;
+  border: 1px solid #167f92;
+}
+.responstable tr {
+  border: 1px solid #d9e4e6;
+}
+.responstable .trOdd {
+  background-color: #eaf3f3;
+}
+.responstable th {
+  display: none;
+  border: 1px solid #fff;
+  background-color: #167f92;
+  color: #fff;
+  padding: 1em;
+}
+.responstable th:first-child {
+  display: table-cell;
+  text-align: center;
+}
+.responstable th:nth-child(2) {
+  display: table-cell;
+}
+.responstable th:nth-child(2) span {
+  display: block;
+}
+@media (min-width: 100px) {
+  .responstable th:nth-child(2) span {
+    display: block;
+  }
+  .responstable th:nth-child(2):after {
+    display: none;
+  }
+}
+.responstable td {
+  display: block;
+  word-wrap: break-word;
+  max-width: 7em;
+}
+.responstable td:nth-last-child(1),
+.responstable td:nth-last-child(2) {
+  text-align: center;
+}
+@media (min-width: 100px) {
+  .responstable td {
+    border: 1px solid #d9e4e6;
+  }
+}
+.responstable th,
+.responstable td {
+  text-align: left;
+  margin: 0.5em 1em;
+}
+@media (min-width: 100px) {
+  .responstable th,
+  .responstable td {
+    display: table-cell;
+    padding: 1em;
+  }
+}
+/* button */
+.button.input-box {
+  display: flex;
+  justify-content: center;
+}
+button {
+  padding: 0 10px;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  transition: ease-out 0.3s;
+  color: #124143;
+  background-color: #b7e8f7;
+  border: none;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button button:hover {
+  color: #b7e3f7;
+  cursor: pointer;
+}
+
+.button button::before {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transition: 0.5s all ease;
+  background: rgb(20, 27, 41);
+  background: linear-gradient(
+    90deg,
+    rgb(21, 20, 41) 0%,
+    rgb(18, 39, 67) 50%,
+    rgb(90, 184, 201) 100%
+  );
+  border-radius: 6px;
+}
+
+.button button:hover::before {
+  opacity: 1;
+  z-index: -2;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+}
+
+.button.update.input-box {
+  display: flex;
+  justify-content: center;
+}
+.update button {
+  padding: 0 10px;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  transition: ease-out 0.3s;
+  color: #55541e;
+  background-color: #f1f7b7;
+  border: none;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button.update button:hover {
+  color: #edf7b7;
+  cursor: pointer;
+}
+
+.button.update button::before {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transition: 0.5s all ease;
+  background: rgb(20, 27, 41);
+  background: linear-gradient(
+    90deg,
+    rgb(40, 41, 20) 0%,
+    rgb(66, 67, 18) 50%,
+    rgb(199, 201, 90) 100%
+  );
+  border-radius: 6px;
+}
+
+.button.update button:hover::before {
+  opacity: 1;
+  z-index: -2;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+}
+.button.update.input-box {
+  display: flex;
+  justify-content: center;
+}
+.update button {
+  padding: 0 10px;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  transition: ease-out 0.3s;
+  color: #55541e;
+  background-color: #f1f7b7;
+  border: none;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button.update button:hover {
+  color: #edf7b7;
+  cursor: pointer;
+}
+
+.button.update button::before {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transition: 0.5s all ease;
+  background: rgb(20, 27, 41);
+  background: linear-gradient(
+    90deg,
+    rgb(40, 41, 20) 0%,
+    rgb(66, 67, 18) 50%,
+    rgb(199, 201, 90) 100%
+  );
+  border-radius: 6px;
+}
+
+.button.update button:hover::before {
+  opacity: 1;
+  z-index: -2;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+}
+
+.button.delete.input-box {
+  display: flex;
+  justify-content: center;
+}
+.delete button {
+  padding: 0 10px;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  transition: ease-out 0.3s;
+  color: #551e1e;
+  background-color: #f7b7b7;
+  border: none;
+  font-weight: 500;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button.delete button:hover {
+  color: #f7b7b7;
+  cursor: pointer;
+}
+
+.button.delete button::before {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transition: 0.5s all ease;
+  background: rgb(20, 27, 41);
+  background: linear-gradient(
+    90deg,
+    rgb(41, 20, 20) 0%,
+    rgb(67, 18, 18) 50%,
+    rgb(201, 90, 90) 100%
+  );
+  border-radius: 6px;
+}
+
+.button.delete button:hover::before {
+  opacity: 1;
+  z-index: -2;
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+}
+/*add modal css */
+.add-modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+}
+
+.add-modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  overflow: auto;
+  /* width: 60%;
+    height: 50%; */
+  position: relative;
+}
+
+.addClose {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.addClose:hover,
+.addClose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* update modal css */
+.update-modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.update-modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  /* width: 60%;
+    height: 50%; */
+  position: relative;
+}
+
+.updateClose {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.updateClose:hover,
+.updateClose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* form css start */
+h1 {
+  text-align: center;
+  font-size: 35px;
+}
+
+.survey-form {
+  padding: 20px;
+  background-color: white;
+  width: 600px;
+  margin: auto;
+  margin-bottom: 18px;
+  border-radius: 5px;
+}
+
+.survey-form .form-group {
+  padding-bottom: 15px;
+}
+
+.survey-form .form-group label {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.survey-form #updateClassName,
+.survey-form #addStuName,
+.survey-form .stuInput,
+#email,
+textarea {
+  padding: 8px;
+  width: 97%;
+  border-radius: 5px;
+  border: none;
+  background-color: #f4f4f4;
+}
+
+#updateClassSubmit,
+#addClassSubmit {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+}
+
+#age,
+#dropdown {
+  padding: 8px;
+  width: 97%;
+  border-radius: 5px;
+  border: none;
+  background-color: #f4f4f4;
+}
+/* student image */
+.studentImage {
+  max-width: 100px;
+  max-height: 100px;
+}
+.studentImageTd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
