@@ -9,6 +9,7 @@ function fetchFunc() {
   <th>Name</th>
   <th>Photo</th>
   <th>Class</th>
+  <th>Section</th>
   <th></th>
   <th></th>
 </tr>`;
@@ -24,6 +25,7 @@ function fetchFunc() {
           x.photo
         }" alt=${x.photo} class="studentImage"></td>
         <td>${x.class}</td>
+        <td>${x.section}</td>
         <td>
             <div class="button update">
                 <button onclick="openModal(event)"><i class='bx bxs-edit-alt'></i></button>
@@ -72,11 +74,13 @@ Addbtn.onclick = function () {
   }
   window.onclick = function (event) {
     if (event.target == addModal) {
+      document.getElementById("addForm").reset();
       addModal.style.display = "none";
     }
   };
 };
 closeBtn.onclick = function () {
+  document.getElementById("addForm").reset();
   addModal.style.display = "none";
 };
 //update button

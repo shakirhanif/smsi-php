@@ -16,6 +16,7 @@
         <th>Name</th>
         <th>Photo</th>
         <th>Class</th>
+        <th>Section</th>
         <th></th>
         <th></th>
       </tr>
