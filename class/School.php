@@ -212,10 +212,36 @@ public function deleteSections($id){
 // get Teachers
         public function listTeachers(){
             $conn=$this->Conn;
-            $query=$conn->prepare("select teachers.teacher,teachers.teacher_id,subjects.subject,classes.name as className,sections.section from teachers left join subjects on subjects.subject_id=teachers.subject_id left join classes on teachers.teacher_id=classes.teacher_id left join sections on sections.section_id=classes.section ");
+            $query=$conn->prepare("select teachers.teacher,teachers.teacher_id,subjects.subject,subjects.subject_id,classes.name as className,classes.id as class_id,sections.section,sections.section_id from teachers left join subjects on subjects.subject_id=teachers.subject_id left join classes on teachers.teacher_id=classes.teacher_id left join sections on sections.section_id=classes.section ");
+            $query->execute();
+            $rows=$query->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($rows);
+        }
+//add teachers
+public function addTeachers($name,$subject,$class,$section){
+    $conn=$this->Conn;
+    $query=$conn->prepare("insert into teachers (teacher,subject_id) values(:teacher,:subject_id)");
+    $query->execute([
+        ':teacher'=>$name,
+        ':subject_id'=>$subject,
+    ]);
+    $teacher_id=$conn->lastInsertId();
+    $classInsert = $conn->prepare("update classes set teacher_id=:teacher_id, section=:section where id=:class_id");
+    $classInsert->execute([
+        ':teacher_id'=>$teacher_id,
+        ':section'=>$section,
+        ':class_id'=>$class,
+    ]);
+    /////////////////////////////////dsadasd
+}
+// List Subjects
+        public function listSubjects(){
+            $conn=$this->Conn;
+            $query=$conn->prepare("select * from subjects");
             $query->execute();
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
         }
     }
+    
 ?>

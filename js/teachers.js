@@ -18,8 +18,8 @@ function fetchFunc() {
         <td>${x.teacher_id}</td>
         <td>${x.teacher}</td>
         <td>${x.subject}</td>
-        <td>${x.section}</td>
         <td>${x.className}</td>
+        <td>${x.section}</td>
         <td>
             <div class="button update">
                 <button onclick="openModal(event)"><i class='bx bxs-edit-alt'></i></button>
@@ -54,15 +54,27 @@ Addbtn.onclick = function () {
       });
     });
   }
-  //fetch teachers for form options
-  let teacherName = document.querySelector(".addTeaName");
-  if (teacherName.children.length < 2) {
-    axios.post("action.php", "action=listTeachers").then(({ data, status }) => {
+  //fetch subjects for form options
+  let subjectName = document.querySelector(".addSubName");
+  if (subjectName.children.length < 2) {
+    axios.post("action.php", "action=listSubjects").then(({ data, status }) => {
       data.forEach((x) => {
         let option = document.createElement("option");
-        option.setAttribute("value", x.teacher_id);
-        option.appendChild(document.createTextNode(x.teacher));
-        teacherName.appendChild(option);
+        option.setAttribute("value", x.subject_id);
+        option.appendChild(document.createTextNode(x.subject));
+        subjectName.appendChild(option);
+      });
+    });
+  }
+  //fetch classes for form options
+  let className = document.querySelector(".addClassName");
+  if (className.children.length < 2) {
+    axios.post("action.php", "action=listClasses").then(({ data, status }) => {
+      data.forEach((x) => {
+        let option = document.createElement("option");
+        option.setAttribute("value", x.id);
+        option.appendChild(document.createTextNode(x.name));
+        className.appendChild(option);
       });
     });
   }
@@ -102,19 +114,19 @@ function openModal(event) {
     }
   }
   //fetch teachers for form options
-  let teacherName = document.querySelector(".updateTeaName");
-  if (teacherName.children.length < 2) {
+  let subjectName = document.querySelector(".updateTeaName");
+  if (subjectName.children.length < 2) {
     axios.post("action.php", "action=listTeachers").then(({ data, status }) => {
       data.forEach((x) => {
         let option = document.createElement("option");
         option.appendChild(document.createTextNode(x.teacher));
         option.setAttribute("value", x.teacher_id);
-        teacherName.appendChild(option);
+        subjectName.appendChild(option);
       });
     });
   } else {
-    for (let i = 0; i < teacherName.children.length; i++) {
-      const x = teacherName.children[i];
+    for (let i = 0; i < subjectName.children.length; i++) {
+      const x = subjectName.children[i];
 
       if (!(x.innerHTML === el.children[3].innerHTML)) {
         x.removeAttribute("selected");
@@ -153,22 +165,15 @@ function addFormSubmit(e) {
   e.preventDefault();
   let addSubmitBtn = document.getElementById("addClassSubmit");
   addSubmitBtn.style.cursor = "not-allowed";
-  let addFormData = new FormData();
-  let name = document.getElementById("addClassName").value;
-  let secName = document.querySelector(".addSecName").value;
-  let addTeaName = document.querySelector(".addTeaName").value;
-  addFormData.append("name", name);
-  addFormData.append("section_id", secName);
-  addFormData.append("teacher_id", addTeaName);
-  addFormData.append("action", "addClasses");
+  let addFormData = new FormData(e.target);
+  // console.log(addFormData);
+  addFormData.append("action", "addTeachers");
   axios.post("action.php", addFormData).then(({ data, status }) => {
     fetchFunc();
     let addModalForm = document.getElementById("addModal");
     addSubmitBtn.style.cursor = "pointer";
     addModalForm.style.display = "none";
   });
-  // console.log(addFormData);
-  // console.log(e.target[0].value);
 }
 //update form submit
 document

@@ -25,35 +25,43 @@
   <div class="add-modal-content">
     <span class="addClose"><i class='bx bx-x-circle'></i></span>
     <!-- form start -->
-    <h1>Add Class</h1>
+    <h1>Add Teacher</h1>
 
 <form class="survey-form" id="addForm" method="POST">
   <div class="form-group">
     <label
-      >Class Name
+      >Name
       <input
         id="addClassName"
+        name="name"
         type="text"
-        placeholder="Enter Your Name..."
+        placeholder="Enter Teacher Name..."
         required
-    /></label>
-  </div>
+        /></label>
+      </div>
+      <div class="form-group">
+        <label>
+          Assign Subject
+          <select id="dropdown" class="addSubName" name="subject">
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Assign Class
+          <select id="dropdown" class="addClassName" name="class">
+          </select>
+        </label>
+      </div>
   <div class="form-group">
     <label>
-      Sections
-      <select id="dropdown" class="addSecName">
+      Assign Section
+      <select id="dropdown" class="addSecName" name="section">
       </select>
     </label>
   </div>
   <div class="form-group">
-    <label>
-      Assign Class Teacher
-      <select id="dropdown" class="addTeaName">
-      </select>
-    </label>
-  </div>
-  <div class="form-group">
-    <button id="addClassSubmit" type="submit">Add Class</button>
+    <button id="addClassSubmit" type="submit">Add Teacher</button>
   </div>
 </form>
     <!-- form end -->

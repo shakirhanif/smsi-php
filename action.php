@@ -75,5 +75,14 @@ if(isset($_POST['action']) && $_POST['action']=='deleteSections'){
 if(isset($_POST['action']) && $_POST['action']=='listTeachers'){
     $sch->listTeachers();
 }
+//Add Teachers
+if(isset($_POST['action']) && $_POST['action']=='addTeachers'){
+    // echo $_POST['name'];
+    $sch->addTeachers($_POST['name'],$_POST['subject'],$_POST['class'],$_POST['section']);
+}
+//List Subjects
+if(isset($_POST['action']) && $_POST['action']=='listSubjects'){
+    $sch->listSubjects();
+}
 
 ?>
