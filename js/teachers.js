@@ -87,24 +87,52 @@ Addbtn.onclick = function () {
 closeBtn.onclick = function () {
   addModal.style.display = "none";
 };
-//update button
+//update Modal
 var updateModal = document.getElementById("updateModal");
 function openModal(event) {
-  //fetch sections for form options
-  let secName = document.querySelector(".updateSecName");
   let el = event.currentTarget.parentNode.parentNode.parentNode;
-  if (secName.children.length < 2) {
-    axios.post("action.php", "action=listSections").then(({ data, status }) => {
+  // //fetch sections for form options
+  // let secName = document.querySelector(".updateSecName");
+  // if (secName.children.length < 2) {
+  //   axios.post("action.php", "action=listSections").then(({ data, status }) => {
+  //     data.forEach((x) => {
+  //       let option = document.createElement("option");
+  //       option.appendChild(document.createTextNode(x.section));
+  //       option.setAttribute("value", x.section_id);
+  //       if (x.section === el.children[4].innerHTML) {
+  //         option.setAttribute("selected", "selected");
+  //       }
+  //       secName.appendChild(option);
+  //     });
+  //   });
+  // } else {
+  //   for (let i = 0; i < secName.children.length; i++) {
+  //     let x = secName.children[i];
+
+  //     if (!(x.innerHTML === el.children[4].innerHTML)) {
+  //       x.removeAttribute("selected");
+  //     } else if (x.innerHTML === el.children[4].innerHTML) {
+  //       x.setAttribute("selected", "selected");
+  //     }
+  //   }
+  // }
+  //fetch subjects for form options
+  let subjectName = document.querySelector(".updateSubName");
+  if (subjectName.children.length < 2) {
+    axios.post("action.php", "action=listSubjects").then(({ data, status }) => {
       data.forEach((x) => {
         let option = document.createElement("option");
-        option.appendChild(document.createTextNode(x.section));
-        option.setAttribute("value", x.section_id);
-        secName.appendChild(option);
+        option.appendChild(document.createTextNode(x.subject));
+        option.setAttribute("value", x.subject_id);
+        if (x.subject === el.children[2].innerHTML) {
+          option.setAttribute("selected", "selected");
+        }
+        subjectName.appendChild(option);
       });
     });
   } else {
-    for (let i = 0; i < secName.children.length; i++) {
-      let x = secName.children[i];
+    for (let i = 0; i < subjectName.children.length; i++) {
+      const x = subjectName.children[i];
 
       if (!(x.innerHTML === el.children[2].innerHTML)) {
         x.removeAttribute("selected");
@@ -113,34 +141,36 @@ function openModal(event) {
       }
     }
   }
-  //fetch teachers for form options
-  let subjectName = document.querySelector(".updateTeaName");
-  if (subjectName.children.length < 2) {
-    axios.post("action.php", "action=listTeachers").then(({ data, status }) => {
-      data.forEach((x) => {
-        let option = document.createElement("option");
-        option.appendChild(document.createTextNode(x.teacher));
-        option.setAttribute("value", x.teacher_id);
-        subjectName.appendChild(option);
-      });
-    });
-  } else {
-    for (let i = 0; i < subjectName.children.length; i++) {
-      const x = subjectName.children[i];
+  // //fetch classes for form options
+  // let className = document.querySelector(".updateClassName");
+  // if (className.children.length < 2) {
+  //   axios.post("action.php", "action=listClasses").then(({ data, status }) => {
+  //     data.forEach((x) => {
+  //       let option = document.createElement("option");
+  //       option.appendChild(document.createTextNode(x.name));
+  //       option.setAttribute("value", x.id);
+  //       if (x.name === el.children[3].innerHTML) {
+  //         option.setAttribute("selected", "selected");
+  //       }
+  //       className.appendChild(option);
+  //     });
+  //   });
+  // } else {
+  //   for (let i = 0; i < className.children.length; i++) {
+  //     const x = className.children[i];
 
-      if (!(x.innerHTML === el.children[3].innerHTML)) {
-        x.removeAttribute("selected");
-      } else if (x.innerHTML === el.children[3].innerHTML) {
-        x.setAttribute("selected", "selected");
-      }
-    }
-  }
-  let classId = parseInt(el.children[0].innerText);
-  let className = el.children[1].innerText;
-
+  //     if (!(x.innerHTML === el.children[3].innerHTML)) {
+  //       x.removeAttribute("selected");
+  //     } else if (x.innerHTML === el.children[3].innerHTML) {
+  //       x.setAttribute("selected", "selected");
+  //     }
+  //   }
+  // }
+  let teacherName = el.children[1].innerText;
+  let teacherId = el.children[0].innerText;
+  document.getElementById("updateTeacherId").value = teacherId;
   let formClassName = document.getElementById("updateClassName");
-  formClassName.dataset.classId = classId;
-  formClassName.value = className;
+  formClassName.value = teacherName;
 
   // console.log(typeof classId);
   // console.log(el.children[0].innerHTML);
@@ -183,24 +213,15 @@ function updateFormSubmit(e) {
   e.preventDefault();
   let updateSubmitBtn = document.getElementById("updateClassSubmit");
   updateSubmitBtn.style.cursor = "not-allowed";
-  let updateFormData = new FormData();
-  let name = document.getElementById("updateClassName").value;
-  let secName = document.querySelector(".updateSecName").value;
-  let addTeaName = document.querySelector(".updateTeaName").value;
-  let classId = document.getElementById("updateClassName").dataset.classId;
-  updateFormData.append("class_id", classId);
-  updateFormData.append("name", name);
-  updateFormData.append("section_id", secName);
-  updateFormData.append("teacher_id", addTeaName);
-  updateFormData.append("action", "updateClasses");
+  let updateFormData = new FormData(e.target);
+  updateFormData.append("action", "updateTeachers");
+  // console.log(updateFormData);
   axios.post("action.php", updateFormData).then(({ data, status }) => {
     fetchFunc();
     let updateModalForm = document.getElementById("updateModal");
     updateSubmitBtn.style.cursor = "pointer";
     updateModalForm.style.display = "none";
   });
-  // console.log(addFormData);
-  // console.log(e.target[0].value);
 }
 
 //DELETE CLASS

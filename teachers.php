@@ -74,35 +74,44 @@
   <div class="update-modal-content">
     <span class="updateClose"><i class='bx bx-x-circle'></i></span>
     <!-- form start -->
-    <h1>Update Class</h1>
+    <h1>Update Teacher</h1>
 
 <form class="survey-form" id="updateForm">
   <div class="form-group">
     <label
-      >Class Name
+      >Teacher Name
       <input
         id="updateClassName"
+        name="name"
         type="text"
         placeholder="Enter Your Name..."
         required
     /></label>
   </div>
   <div class="form-group">
-    <label>
-      Sections
-      <select id="dropdown" class="updateSecName">
-      </select>
-    </label>
-  </div>
+        <label>
+          Assign Subject
+          <select id="dropdown" class="updateSubName" name="subject">
+          </select>
+        </label>
+      </div>
+      <!-- <div class="form-group">
+        <label>
+          Assign Class
+          <select id="dropdown" class="updateClassName" name="class">
+          </select>
+        </label>
+      </div>
   <div class="form-group">
     <label>
-      Assign Class Teacher
-      <select id="dropdown" class="updateTeaName">
+      Assign Section
+      <select id="dropdown" class="updateSecName" name="section">
       </select>
     </label>
-  </div>
+  </div> -->
+  <input type="hidden" id="updateTeacherId" name="id">
   <div class="form-group">
-    <button id="updateClassSubmit" >Update Class</button>
+    <button id="updateClassSubmit" >Update Teacher</button>
   </div>
 </form>
     <!-- form end -->

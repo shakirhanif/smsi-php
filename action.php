@@ -80,6 +80,10 @@ if(isset($_POST['action']) && $_POST['action']=='addTeachers'){
     // echo $_POST['name'];
     $sch->addTeachers($_POST['name'],$_POST['subject'],$_POST['class'],$_POST['section']);
 }
+//update Teachers
+if(isset($_POST['action']) && $_POST['action']=='updateTeachers'){
+    $sch->updateTeachers($_POST['name'],$_POST['subject'],$_POST['id']);
+}
 //List Subjects
 if(isset($_POST['action']) && $_POST['action']=='listSubjects'){
     $sch->listSubjects();

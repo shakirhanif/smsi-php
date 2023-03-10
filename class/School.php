@@ -218,22 +218,39 @@ public function deleteSections($id){
             echo json_encode($rows);
         }
 //add teachers
-public function addTeachers($name,$subject,$class,$section){
-    $conn=$this->Conn;
-    $query=$conn->prepare("insert into teachers (teacher,subject_id) values(:teacher,:subject_id)");
-    $query->execute([
-        ':teacher'=>$name,
-        ':subject_id'=>$subject,
-    ]);
-    $teacher_id=$conn->lastInsertId();
-    $classInsert = $conn->prepare("update classes set teacher_id=:teacher_id, section=:section where id=:class_id");
-    $classInsert->execute([
-        ':teacher_id'=>$teacher_id,
-        ':section'=>$section,
-        ':class_id'=>$class,
-    ]);
-    /////////////////////////////////dsadasd
-}
+        public function addTeachers($name,$subject,$class,$section){
+            $conn=$this->Conn;
+            $query=$conn->prepare("insert into teachers (teacher,subject_id) values(:teacher,:subject_id)");
+            $query->execute([
+                ':teacher'=>$name,
+                ':subject_id'=>$subject,
+            ]);
+            $teacher_id=$conn->lastInsertId();
+            $classInsert = $conn->prepare("update classes set teacher_id=:teacher_id, section=:section where id=:class_id");
+            $classInsert->execute([
+                ':teacher_id'=>$teacher_id,
+                ':section'=>$section,
+                ':class_id'=>$class,
+            ]);
+        }
+//update Teachers
+        public function updateTeachers($name,$subject,$id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("update teachers set teacher=:name,subject_id=:subject where teacher_id=:id");
+            $query->execute([
+                ':name'=>$name,
+                ':subject'=>$subject,
+                ':id'=>$id,
+            ]);
+            // $queryClass=$conn->prepare("update classes set section=:section,teacher_id=:teacher_id where id=:class");
+            // $queryClass->execute([
+            //     ':section'=>$section,
+            //     ':class'=>$class,
+            //     ':teacher_id'=>$id,
+            // ]);
+            echo "success";
+        /////////////////////////////////dsadasd
+        }
 // List Subjects
         public function listSubjects(){
             $conn=$this->Conn;
