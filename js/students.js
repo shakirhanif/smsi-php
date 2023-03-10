@@ -33,7 +33,7 @@ function fetchFunc() {
         </td>
         <td>
             <div class="button delete">
-                <button onclick="deleteClass(event)"><i class='bx bxs-trash'></i></button>
+                <button onclick="deleteStudent(event)"><i class='bx bxs-trash'></i></button>
             </div>
         </td>
       </tr>`;
@@ -204,12 +204,12 @@ function updateFormSubmit(e) {
 }
 
 //DELETE CLASS
-function deleteClass(e) {
+function deleteStudent(e) {
   let deleteTr = e.currentTarget.parentNode.parentNode.parentNode;
-  let classId = deleteTr.children[0].innerText;
+  let stuId = deleteTr.children[0].innerText;
   let formData = new FormData();
-  formData.append("action", "deleteClasses");
-  formData.append("class_id", classId);
+  formData.append("action", "deleteStudent");
+  formData.append("id", stuId);
   axios.post("action.php", formData).then(({ status }) => {
     if (status === 200) {
       fetchFunc();

@@ -48,6 +48,12 @@ if(isset($_POST['action']) && $_POST['action']=='updateStudent'){
     }
     $sch->updateStudent($_POST['regno'],$_POST['rollno'],$_POST['acayear'],$_POST['addate'],$_POST['class'],$_POST['section'],$_POST['name'],$img,$_POST['gender'],$_POST['email'],$_POST['mobile'],$_POST['address'],$_POST['fathername'],$_POST['mothername'],$_POST['id']);
 }
+//delete student
+if(isset($_POST['action']) && $_POST['action']=='deleteStudent'){
+    $photo = $sch->getStudentPhoto($_POST['id']);
+    unlink("upload/$photo");
+    $sch->deleteStudent($_POST['id']);
+}
 //List Sections
 if(isset($_POST['action']) && $_POST['action']=='listSections'){
     $sch->listSections();

@@ -108,6 +108,14 @@
             $row=$query->fetch(PDO::FETCH_ASSOC);
             echo json_encode($row);
         }
+// get Student photo for delete
+        public function getStudentPhoto($id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("select photo from students where id=$id");
+            $query->execute();
+            $row=$query->fetch(PDO::FETCH_ASSOC);
+            return $row['photo'];
+        }
 //add students
         public function addStudents($regno,$rollno,$acayear,$addate,$class,$section,$name,$photo,$gender,$email,$mobile,$address,$fatherName,$motherName){
             // echo "reg". $regno . "rol" . $rollno .'acayer' . $acayear . "adate". $addate . "clas" . $class . "sec" . $section . "name" . $name . "photo" . $photo . "genfer" . $gender . "email" . $email . "mobile" . $mobile . "address" . $address . "father" . $fatherName . "mother" . $motherName ;
@@ -155,6 +163,15 @@
                 ':id'=>$id,
             ]);
         }
+//delete classes
+public function deleteStudent($id){
+    $conn=$this->Conn;
+    $query=$conn->prepare("delete from students where id=:id");
+    $query->execute([
+        ':id'=>$id,
+    ]);
+    echo "success";
+}
 // get sections
         public function listSections(){
             $conn=$this->Conn;
