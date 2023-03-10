@@ -64,7 +64,7 @@ $school->adminLoginstatus();
           <span class="tooltip">Sections</span>
         </li>
         <li>
-          <a href="#">
+          <a href="teachers.php">
           <i class='bx bx-male'></i>
             <span class="link_names">Teachers</span>
           </a>

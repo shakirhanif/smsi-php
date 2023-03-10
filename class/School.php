@@ -212,7 +212,7 @@ public function deleteSections($id){
 // get Teachers
         public function listTeachers(){
             $conn=$this->Conn;
-            $query=$conn->prepare("select * from teachers");
+            $query=$conn->prepare("select teachers.teacher,teachers.teacher_id,subjects.subject,classes.name as className,sections.section from teachers left join subjects on subjects.subject_id=teachers.subject_id left join classes on teachers.teacher_id=classes.teacher_id left join sections on sections.section_id=classes.section ");
             $query->execute();
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
