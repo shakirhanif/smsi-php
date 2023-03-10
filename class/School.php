@@ -201,14 +201,14 @@ public function updateSections($name,$id){
     echo "success";
 }
 //delete sections
-public function deleteSections($id){
-    $conn=$this->Conn;
-    $query=$conn->prepare("delete from sections where section_id=:id");
-    $query->execute([
-        ':id'=>$id,
-    ]);
-    echo "success";
-}
+        public function deleteSections($id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("delete from sections where section_id=:id");
+            $query->execute([
+                ':id'=>$id,
+            ]);
+            echo "success";
+        }
 // get Teachers
         public function listTeachers(){
             $conn=$this->Conn;
@@ -250,6 +250,15 @@ public function deleteSections($id){
             // ]);
             echo "success";
         /////////////////////////////////dsadasd
+        }
+//delete teachers
+        public function deleteTeachers($id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("delete from teachers where teacher_id=:id");
+            $query->execute([
+                ':id'=>$id,
+            ]);
+            echo "success";
         }
 // List Subjects
         public function listSubjects(){

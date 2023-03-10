@@ -224,13 +224,13 @@ function updateFormSubmit(e) {
   });
 }
 
-//DELETE CLASS
+//DELETE Teacher
 function deleteClass(e) {
   let deleteTr = e.currentTarget.parentNode.parentNode.parentNode;
   let classId = deleteTr.children[0].innerText;
   let formData = new FormData();
-  formData.append("action", "deleteClasses");
-  formData.append("class_id", classId);
+  formData.append("action", "deleteTeachers");
+  formData.append("id", classId);
   axios.post("action.php", formData).then(({ status }) => {
     if (status === 200) {
       fetchFunc();
