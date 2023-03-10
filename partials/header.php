@@ -57,7 +57,7 @@ $school->adminLoginstatus();
           <span class="tooltip">Classes</span>
         </li>
         <li>
-          <a href="#">
+          <a href="sections.php">
           <i class='bx bxs-shapes'></i>
             <span class="link_names">Sections</span>
           </a>

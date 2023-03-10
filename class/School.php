@@ -163,7 +163,7 @@
                 ':id'=>$id,
             ]);
         }
-//delete classes
+//delete students
 public function deleteStudent($id){
     $conn=$this->Conn;
     $query=$conn->prepare("delete from students where id=:id");
@@ -180,6 +180,35 @@ public function deleteStudent($id){
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
         }
+//add sections
+        public function addSections($section){
+            $conn=$this->Conn;
+            $query=$conn->prepare("insert into sections (section) values(:section)");
+            $query->execute([
+                ':section'=>$section,
+            ]);
+            $id=$conn->lastInsertId();
+            echo $id;
+        }
+//update Sections
+public function updateSections($name,$id){
+    $conn=$this->Conn;
+    $query=$conn->prepare("update sections set section=:name where section_id=:id");
+    $query->execute([
+        ':name'=>$name,
+        ':id'=>$id,
+    ]);
+    echo "success";
+}
+//delete sections
+public function deleteSections($id){
+    $conn=$this->Conn;
+    $query=$conn->prepare("delete from sections where section_id=:id");
+    $query->execute([
+        ':id'=>$id,
+    ]);
+    echo "success";
+}
 // get Teachers
         public function listTeachers(){
             $conn=$this->Conn;
