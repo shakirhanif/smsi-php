@@ -27,7 +27,7 @@ function fetchFunc() {
         </td>
         <td>
             <div class="button delete">
-                <button onclick="deleteClass(event)"><i class='bx bxs-trash'></i></button>
+                <button onclick="deleteTeachers(event)"><i class='bx bxs-trash'></i></button>
             </div>
         </td>
       </tr>`;
@@ -225,7 +225,7 @@ function updateFormSubmit(e) {
 }
 
 //DELETE Teacher
-function deleteClass(e) {
+function deleteTeachers(e) {
   let deleteTr = e.currentTarget.parentNode.parentNode.parentNode;
   let classId = deleteTr.children[0].innerText;
   let formData = new FormData();

@@ -54,7 +54,7 @@
 //List classes
         public function listClasses(){
             $conn=$this->Conn;
-            $query=$conn->prepare("select classes.id as id,classes.name as name,sections.section as section,teachers.teacher as teacher from classes join sections on classes.section=sections.section_id join teachers on classes.teacher_id=teachers.teacher_id");
+            $query=$conn->prepare("select classes.id as id,classes.name as name,sections.section as section,teachers.teacher as teacher from classes left join sections on classes.section=sections.section_id left join teachers on classes.teacher_id=teachers.teacher_id");
             $query->execute();
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
