@@ -105,4 +105,8 @@ if(isset($_POST['action']) && $_POST['action']=='updateSubjects'){
 if(isset($_POST['action']) && $_POST['action']=='deleteSubjects'){
     $sch->deleteSubjects($_POST['id']);
 }
+//search attendance
+if(isset($_POST['action']) && $_POST['action']=='searchAttendance'){
+    $sch->searchAttendance($_POST['class'],$_POST['section']);
+}
 ?>
