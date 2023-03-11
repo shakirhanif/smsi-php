@@ -71,14 +71,14 @@ $school->adminLoginstatus();
           <span class="tooltip">Teachers</span>
         </li>
         <li>
-          <a href="#">
+          <a href="subjects.php">
           <i class='bx bx-book'></i>
             <span class="link_names">Subjects</span>
           </a>
           <span class="tooltip">Subjects</span>
         </li>
         <li>
-          <a href="#">
+          <a href="attendance.php">
           <i class='bx bx-check-square'></i>
             <span class="link_names">Attendance</span>
           </a>

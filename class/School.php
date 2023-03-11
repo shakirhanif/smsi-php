@@ -249,7 +249,6 @@ public function updateSections($name,$id){
             //     ':teacher_id'=>$id,
             // ]);
             echo "success";
-        /////////////////////////////////dsadasd
         }
 //delete teachers
         public function deleteTeachers($id){
@@ -268,6 +267,38 @@ public function updateSections($name,$id){
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
         }
+//add subjects
+        public function addSubjects($subject,$type,$code){
+            $conn=$this->Conn;
+            $query=$conn->prepare("insert into subjects (subject,type,code) values(:subject,:type,:code)");
+            $query->execute([
+                ':subject'=>$subject,
+                ':type'=>$type,
+                ':code'=>$code,
+            ]);
+            $id=$conn->lastInsertId();
+            echo $id;
+        }
+//update Sections
+        public function updateSubjects($subject,$type,$code,$id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("update subjects set subject=:subject,type=:type,code=:code where subject_id=:id");
+            $query->execute([
+                ':subject'=>$subject,
+                ':type'=>$type,
+                ':code'=>$code,
+                ':id'=>$id,
+            ]);
+            echo "success";
     }
-    
+//delete subjects
+        public function deleteSubjects($id){
+            $conn=$this->Conn;
+            $query=$conn->prepare("delete from subjects where subject_id=:id");
+            $query->execute([
+                ':id'=>$id,
+            ]);
+            echo "success";
+        }
+    }
 ?>
