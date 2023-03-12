@@ -303,10 +303,10 @@ public function updateSections($name,$id){
 // search attendance
         public function searchAttendance($class,$section){
             $conn=$this->Conn;
-            $query=$conn->prepare("select attendance.attendance_id, students.admission_no as regno,students.roll_no as rollno,students.name from attendance left join students on students.id=attendance.student_id where attendance.class_id=:class and attendance.section_id=:section;");
+            $query=$conn->prepare("select students.id,students.admission_no as regno,students.roll_no as rollno,students.name from students where class=:class and section=:section;");
             $query->execute([
-                'class'=>$class,
-                'section'=>$section,
+                ':class'=>$class,
+                ':section'=>$section,
             ]);
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);

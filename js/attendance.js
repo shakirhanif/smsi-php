@@ -35,7 +35,9 @@ function searchFormSubmit(e) {
   let addSubmitBtn = document.getElementById("searchAttendanceButton");
   addSubmitBtn.style.cursor = "not-allowed";
   let addFormData = new FormData(e.target);
-  //   console.log(addFormData);
+  let dateArray = addFormData.get("date").replaceAll("-", "/");
+  addFormData.set("date", dateArray);
+  // console.log(addFormData);
   addFormData.append("action", "searchAttendance");
   axios.post("action.php", addFormData).then(({ data, status }) => {
     fetchFunc(data);
@@ -47,31 +49,42 @@ function fetchFunc(data) {
   const classTable = document.getElementById("classTable");
   classTable.innerHTML = `
   <tr>
-    <th>ID</th>
     <th><span>Reg No</span></th>
     <th><span>Roll No</span></th>
     <th>Name</th>
-    <th>Mark Present</th>
-    <th>Mark Absent</th>
+    <th>Mark Attendance</th>
   </tr>`;
   data.forEach((x, i) => {
     classTable.innerHTML += `<tr class=${i % 2 === 0 ? "trEven" : "trOdd"}>
-    <td>${x.attendance_id}</td>
         <td>${x.regno}</td>
         <td>${x.rollno}</td>
         <td>${x.name}</td>
         <td>
-            <div class="button update">
-                <button onclick="openModal(event)"><i class='bx bxs-edit-alt'></i></button>
-            </div>
-        </td>
-        <td>
-            <div class="button delete">
-                <button onclick="deleteTeachers(event)"><i class='bx bxs-trash'></i></button>
-            </div>
+          <div class="attendanceDiv">
+            <label for="present" class="attendance" onclick="lableHandler(event)">Present</label>
+            <input type="radio" name="attendance" class="attendanceInputPresent" id="present" value="present" type="hidden" style="display: none;">
+            <label for="absent" class="attendance" onclick="lableHandler(event)">Absent</label>
+            <input type="radio"  name="attendance" class="attendanceInputAbsent" id="absent" value="absent" type="hidden" style="display: none;">
+            <label for="sickLeave" class="attendance" onclick="lableHandler(event)">Sick-Leave</label>
+            <input type="radio"  name="attendance" class="attendanceInputSickLeave" id="sickLeave" value="sick leave" type="hidden" style="display: none;">
+            <label for="halfDay" class="attendance" onclick="lableHandler(event)">Half-Day</label>
+            <input type="radio"  name="attendance" class="attendanceInputHalfDay" id="halfDay" value="half day" type="hidden" style="display: none;">
+          </div>
         </td>
       </tr>`;
   });
+}
+function lableHandler(e) {
+  let attendanceDiv = e.currentTarget.parentNode;
+  let lableElem = attendanceDiv.getElementsByClassName("attendance");
+  for (let i = 0; i < lableElem.length; i++) {
+    let x = lableElem[i];
+    if (x === e.currentTarget) {
+      x.classList.add("active");
+    } else {
+      x.classList.remove("active");
+    }
+  }
 }
 // //addform submit
 // document.getElementById("addForm").addEventListener("submit", addFormSubmit);
@@ -120,3 +133,41 @@ function deleteTeachers(e) {
     }
   });
 }
+
+/////test////
+// document
+//   .getElementById("attendanceSubmit")
+//   .addEventListener("submit", attendanceSubmit);
+// function attendanceSubmit(e) {
+//   e.preventDefault();
+//   let myForm = new FormData(e.target);
+//   console.log(myForm);
+// }
+////checked active///
+// let lableElem = document.getElementsByClassName("attendance");
+// console.log(lableElem);
+// for (let i = 0; i < lableElem.length; i++) {
+//   lableElem[i].addEventListener("click", attendanceClickHandler);
+//   function attendanceClickHandler(e) {
+//     for (let i = 0; i < lableElem.length; i++) {
+//       const x = lableElem[i];
+//       if (x === e.target) {
+//         x.classList.add("active");
+//       } else {
+//         x.classList.remove("active");
+//       }
+//     }
+//   }
+// }
+// lableElem.forEach((x) => {
+//   x.addEventListener("click", attendanceClickHandler);
+// function attendanceClickHandler(e) {
+//   lableElem.forEach((x) => {
+//     if (x === e.target) {
+//       x.classList.add("active");
+//     } else {
+//       x.classList.remove("active");
+//     }
+//   });
+// }
+// });

@@ -421,3 +421,25 @@ textarea {
   border: none;
   background-color: #f4f4f4;
 }
+/* radio button */
+.attendanceDiv {
+  border-radius: 10px;
+  background-color: #eeeded;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  padding: 0 5px;
+}
+.attendanceDiv .attendance {
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.attendanceDiv .attendance:hover {
+  background-color: #aaa8a8;
+}
+
+.attendanceDiv .attendance.active {
+  background-color: #167f92;
+  color: #fff;
+}
