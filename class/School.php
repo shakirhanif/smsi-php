@@ -311,5 +311,31 @@ public function updateSections($name,$id){
             $rows=$query->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
         }
+// add attendance
+        public function addAttendance($list){
+            $conn=$this->Conn;
+            // $conn->beginTransaction();
+            $query=$conn->prepare("insert into attendance (student_id,class_id,section_id,attendance_status,attendance_date) values(:student_id,:class_id,:section_id,:attendance_status,:attendance_date)");
+            for ($i=0; $i < count($list) ; $i++) { 
+                $attendanceObj=$list[$i];
+                $studentId=$attendanceObj['student_id'];
+                $classId=$attendanceObj['class_id'];
+                $sectionId=$attendanceObj['section_id'];
+                $attendanceStatus=$attendanceObj['attendance_status'];
+                $attendanceDate=$attendanceObj['attendance_date'];
+                $query->execute([
+                    ':student_id'=>$studentId,
+                    ':class_id'=>$classId,
+                    ':section_id'=>$sectionId,
+                    ':attendance_status'=>$attendanceStatus,
+                    ':attendance_date'=>$attendanceDate,
+                ]);
+            }
+            $id=$conn->lastInsertId();
+            echo $id;
+            // $conn->commit();
+            // $rows=$query->fetchAll(PDO::FETCH_ASSOC);
+            // echo json_encode($rows);
+        }
     }
 ?>

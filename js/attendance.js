@@ -125,7 +125,7 @@ function saveHandler(e) {
       student_id: studentId,
       class_id: className,
       section_id: secName,
-      attenadance_status: attenadanceStatus,
+      attendance_status: attenadanceStatus,
       attendance_date: date,
     };
     // formData.append("attList", attendance);
@@ -137,7 +137,7 @@ function saveHandler(e) {
   formData.append("action", "addAttendance");
   axios.post("action.php", formData).then(({ data, status }) => {
     if (status === 200) {
-      // console.log("success");
+      location.reload();
     }
   });
 

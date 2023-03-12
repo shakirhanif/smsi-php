@@ -112,7 +112,6 @@ if(isset($_POST['action']) && $_POST['action']=='searchAttendance'){
 //add attendance
 if(isset($_POST['action']) && $_POST['action']=='addAttendance'){
     $myList=json_decode($_POST['attList'],true);
-    var_dump($myList[0]);
-    // $sch->searchAttendance();
+    $sch->addAttendance($myList);
 }
 ?>
