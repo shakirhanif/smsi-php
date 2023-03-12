@@ -314,28 +314,37 @@ public function updateSections($name,$id){
 // add attendance
         public function addAttendance($list){
             $conn=$this->Conn;
-            // $conn->beginTransaction();
-            $query=$conn->prepare("insert into attendance (student_id,class_id,section_id,attendance_status,attendance_date) values(:student_id,:class_id,:section_id,:attendance_status,:attendance_date)");
-            for ($i=0; $i < count($list) ; $i++) { 
-                $attendanceObj=$list[$i];
-                $studentId=$attendanceObj['student_id'];
-                $classId=$attendanceObj['class_id'];
-                $sectionId=$attendanceObj['section_id'];
-                $attendanceStatus=$attendanceObj['attendance_status'];
-                $attendanceDate=$attendanceObj['attendance_date'];
-                $query->execute([
-                    ':student_id'=>$studentId,
-                    ':class_id'=>$classId,
-                    ':section_id'=>$sectionId,
-                    ':attendance_status'=>$attendanceStatus,
-                    ':attendance_date'=>$attendanceDate,
-                ]);
+            $checkQuery=$conn->prepare("select if(exists(select * from attendance where class_id=:classId and section_id=:sectionId and attendance_date=:attendanceDate),'true','false') as result;");
+            $chkClass=$list[0]['class_id'];
+            $chkSection=$list[0]['section_id'];
+            $chkDate=$list[0]['attendance_date'];
+            $checkQuery->execute([
+                ':classId'=>$chkClass,
+                ':sectionId'=>$chkSection,
+                ':attendanceDate'=>$chkDate,
+            ]);
+            $exists=$checkQuery->fetch(PDO::FETCH_ASSOC);
+            if (!($exists['result']==='true')) {
+                $query=$conn->prepare("insert into attendance (student_id,class_id,section_id,attendance_status,attendance_date) values(:student_id,:class_id,:section_id,:attendance_status,:attendance_date)");
+                for ($i=0; $i < count($list) ; $i++) { 
+                    $attendanceObj=$list[$i];
+                    $studentId=$attendanceObj['student_id'];
+                    $classId=$attendanceObj['class_id'];
+                    $sectionId=$attendanceObj['section_id'];
+                    $attendanceStatus=$attendanceObj['attendance_status'];
+                    $attendanceDate=$attendanceObj['attendance_date'];
+                    $query->execute([
+                        ':student_id'=>$studentId,
+                        ':class_id'=>$classId,
+                        ':section_id'=>$sectionId,
+                        ':attendance_status'=>$attendanceStatus,
+                        ':attendance_date'=>$attendanceDate,
+                    ]);
+                }
+                echo "success";
+            }else{
+                echo "already exists";
             }
-            $id=$conn->lastInsertId();
-            echo $id;
-            // $conn->commit();
-            // $rows=$query->fetchAll(PDO::FETCH_ASSOC);
-            // echo json_encode($rows);
         }
     }
 ?>

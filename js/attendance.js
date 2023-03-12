@@ -49,16 +49,16 @@ function fetchFunc(data) {
   const classTable = document.getElementById("classTable");
   classTable.innerHTML = `
   <tr>
+    <th>Name</th>
     <th><span>Reg No</span></th>
     <th><span>Roll No</span></th>
-    <th>Name</th>
     <th>Mark Attendance</th>
   </tr>`;
   data.forEach((x, i) => {
     classTable.innerHTML += `<tr class=${i % 2 === 0 ? "trEven" : "trOdd"}>
+        <td>${x.name}</td>
         <td>${x.regno}</td>
         <td>${x.rollno}</td>
-        <td>${x.name}</td>
         <td>
           <div class="attendanceDiv">
             <label for="present" class="attendance" data-student-id=${
@@ -137,7 +137,6 @@ function saveHandler(e) {
   formData.append("action", "addAttendance");
   axios.post("action.php", formData).then(({ data, status }) => {
     if (status === 200) {
-      location.reload();
     }
   });
 
