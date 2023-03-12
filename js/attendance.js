@@ -61,13 +61,21 @@ function fetchFunc(data) {
         <td>${x.name}</td>
         <td>
           <div class="attendanceDiv">
-            <label for="present" class="attendance" onclick="lableHandler(event)">Present</label>
+            <label for="present" class="attendance" data-student-id=${
+              x.id
+            } onclick="lableHandler(event)">Present</label>
             <input type="radio" name="attendance" class="attendanceInputPresent" id="present" value="present" type="hidden" style="display: none;">
-            <label for="absent" class="attendance" onclick="lableHandler(event)">Absent</label>
+            <label for="absent" class="attendance" data-student-id=${
+              x.id
+            } onclick="lableHandler(event)">Absent</label>
             <input type="radio"  name="attendance" class="attendanceInputAbsent" id="absent" value="absent" type="hidden" style="display: none;">
-            <label for="sickLeave" class="attendance" onclick="lableHandler(event)">Sick-Leave</label>
+            <label for="sickLeave" class="attendance" data-student-id=${
+              x.id
+            } onclick="lableHandler(event)">Sick-Leave</label>
             <input type="radio"  name="attendance" class="attendanceInputSickLeave" id="sickLeave" value="sick leave" type="hidden" style="display: none;">
-            <label for="halfDay" class="attendance" onclick="lableHandler(event)">Half-Day</label>
+            <label for="halfDay" class="attendance" data-student-id=${
+              x.id
+            } onclick="lableHandler(event)">Half-Day</label>
             <input type="radio"  name="attendance" class="attendanceInputHalfDay" id="halfDay" value="half day" type="hidden" style="display: none;">
           </div>
         </td>
@@ -85,6 +93,57 @@ function lableHandler(e) {
       x.classList.remove("active");
     }
   }
+}
+//Save Form
+document
+  .getElementById("addButtonAttendance")
+  .addEventListener("click", saveHandler);
+function saveHandler(e) {
+  let date = document
+    .getElementById("saveAttendanceDate")
+    .value.replaceAll("-", "/");
+  let className = document.querySelector(".updateClassName").value;
+  let secName = document.querySelector(".updateSecName").value;
+  let lables = document.getElementsByClassName("attendance active");
+  let list = [];
+  let attendance = {};
+  let formData = new FormData();
+  for (let i = 0; i < lables.length; i++) {
+    let x = lables[i];
+    let studentId = x.dataset.studentId;
+    let attenadanceStatus =
+      x.innerText === "Present"
+        ? 1
+        : x.innerText === "Absent"
+        ? 2
+        : x.innerText === "Sick-Leave"
+        ? 3
+        : x.innerText === "Half-Day"
+        ? 4
+        : null;
+    attendance = {
+      student_id: studentId,
+      class_id: className,
+      section_id: secName,
+      attenadance_status: attenadanceStatus,
+      attendance_date: date,
+    };
+    // formData.append("attList", attendance);
+    list.push(attendance);
+  }
+  let newList = JSON.stringify(list);
+  formData.append("attList", newList);
+  // console.log(formData);
+  formData.append("action", "addAttendance");
+  axios.post("action.php", formData).then(({ data, status }) => {
+    if (status === 200) {
+      // console.log("success");
+    }
+  });
+
+  // console.log(secName.value);
+  // console.log(date.value.replaceAll("-", "/"));
+  // console.log(lables[0].dataset.studentId);
 }
 // //addform submit
 // document.getElementById("addForm").addEventListener("submit", addFormSubmit);

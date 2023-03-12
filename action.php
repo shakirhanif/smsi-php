@@ -109,4 +109,10 @@ if(isset($_POST['action']) && $_POST['action']=='deleteSubjects'){
 if(isset($_POST['action']) && $_POST['action']=='searchAttendance'){
     $sch->searchAttendance($_POST['class'],$_POST['section']);
 }
+//add attendance
+if(isset($_POST['action']) && $_POST['action']=='addAttendance'){
+    $myList=json_decode($_POST['attList'],true);
+    var_dump($myList[0]);
+    // $sch->searchAttendance();
+}
 ?>

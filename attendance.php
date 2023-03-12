@@ -3,7 +3,7 @@
 <div class="header-class">
     <div class="classTitle">Take Attendance</div>
     <div class="button">
-        <button id="addButton"><i class='bx bx-save' style="font-size: 25px;margin-top:5px;"></i></button>
+        <button id="addButtonAttendance"><i class='bx bx-save' style="font-size: 25px;margin-top:5px;"></i></button>
     </div>
 </div>
 <!-- section and class form start -->
@@ -26,7 +26,7 @@
     <label>
       Date
     </label>
-    <input type="date" name="date" id="addClassName" class="attendanceDate" required >
+    <input type="date" name="date" id="saveAttendanceDate" class="attendanceDate" required >
     </div>
     <div class="button update" style="width: 100%;text-align:right;">
             <button id="searchAttendanceButton">Search</button>
