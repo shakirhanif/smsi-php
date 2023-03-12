@@ -26,7 +26,7 @@
     <label>
       Date
     </label>
-    <input type="date" name="date" id="saveAttendanceDate" class="attendanceDate" required >
+    <input type="date" name="date" id="saveAttendanceDate" style="padding: 8px;width: 97%;border-radius: 5px;border: none;background-color: #f4f4f4;"class="attendanceDate" required >
     </div>
     <div class="button update" style="width: 100%;text-align:right;">
             <button id="searchAttendanceButton">Search</button>

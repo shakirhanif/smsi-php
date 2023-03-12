@@ -434,12 +434,25 @@ textarea {
 .attendanceDiv .attendance {
   padding: 0 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .attendanceDiv .attendance:hover {
   background-color: #aaa8a8;
 }
 
-.attendanceDiv .attendance.active {
-  background-color: #167f92;
+.attendanceDiv .attendance.ispresent.active {
+  background-color: #169e1d;
+  color: #fff;
+}
+.attendanceDiv .attendance.isabsent.active {
+  background-color: #e61414;
+  color: #fff;
+}
+.attendanceDiv .attendance.issick.active {
+  background-color: #dacd1d;
+  color: #fff;
+}
+.attendanceDiv .attendance.ishalf.active {
+  background-color: #1d62c9;
   color: #fff;
 }

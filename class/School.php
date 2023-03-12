@@ -341,9 +341,9 @@ public function updateSections($name,$id){
                         ':attendance_date'=>$attendanceDate,
                     ]);
                 }
-                echo "success";
+                echo "successfully saved";
             }else{
-                echo "already exists";
+                echo "attendance already taken";
             }
         }
     }

@@ -61,19 +61,19 @@ function fetchFunc(data) {
         <td>${x.rollno}</td>
         <td>
           <div class="attendanceDiv">
-            <label for="present" class="attendance" data-student-id=${
+            <label for="present" class="attendance ispresent" data-student-id=${
               x.id
             } onclick="lableHandler(event)">Present</label>
             <input type="radio" name="attendance" class="attendanceInputPresent" id="present" value="present" type="hidden" style="display: none;">
-            <label for="absent" class="attendance" data-student-id=${
+            <label for="absent" class="attendance isabsent active" data-student-id=${
               x.id
             } onclick="lableHandler(event)">Absent</label>
             <input type="radio"  name="attendance" class="attendanceInputAbsent" id="absent" value="absent" type="hidden" style="display: none;">
-            <label for="sickLeave" class="attendance" data-student-id=${
+            <label for="sickLeave" class="attendance issick" data-student-id=${
               x.id
             } onclick="lableHandler(event)">Sick-Leave</label>
             <input type="radio"  name="attendance" class="attendanceInputSickLeave" id="sickLeave" value="sick leave" type="hidden" style="display: none;">
-            <label for="halfDay" class="attendance" data-student-id=${
+            <label for="halfDay" class="attendance ishalf" data-student-id=${
               x.id
             } onclick="lableHandler(event)">Half-Day</label>
             <input type="radio"  name="attendance" class="attendanceInputHalfDay" id="halfDay" value="half day" type="hidden" style="display: none;">
@@ -137,6 +137,7 @@ function saveHandler(e) {
   formData.append("action", "addAttendance");
   axios.post("action.php", formData).then(({ data, status }) => {
     if (status === 200) {
+      snackBarFunc(data);
     }
   });
 
