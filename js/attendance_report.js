@@ -73,12 +73,13 @@ function searchFormSubmit(e) {
   e.preventDefault();
   let addSubmitBtn = document.getElementById("searchAttendanceButton");
   addSubmitBtn.style.cursor = "not-allowed";
-  let addFormData = new FormData(e.target);
-  let dateArray = addFormData.get("date").replaceAll("-", "/");
-  addFormData.set("date", dateArray);
-  // console.log(addFormData);
-  addFormData.append("action", "searchAttendance");
-  axios.post("action.php", addFormData).then(({ data, status }) => {
+  let searchFormData = new FormData(e.target);
+  let dateArray = searchFormData.get("date").replaceAll("-", "/");
+  searchFormData.set("date", dateArray);
+  // console.log(searchFormData.get("section"));
+  // console.log(searchFormData);
+  searchFormData.append("action", "searchAttendanceReport");
+  axios.post("action.php", searchFormData).then(({ data, status }) => {
     fetchFunc(data);
     addSubmitBtn.style.cursor = "pointer";
   });
@@ -89,94 +90,100 @@ function fetchFunc(data) {
   classTable.innerHTML = `
   <tr>
     <th>Name</th>
-    <th><span>Reg No</span></th>
     <th><span>Roll No</span></th>
+    <th><span>Class</span></th>
+    <th>Section</th>
+    <th>Date</th>
     <th>Attendance Status</th>
   </tr>`;
   data.forEach((x, i) => {
     classTable.innerHTML += `<tr class=${i % 2 === 0 ? "trEven" : "trOdd"}>
         <td>${x.name}</td>
-        <td>${x.regno}</td>
         <td>${x.rollno}</td>
+        <td>${x.class}</td>
+        <td>${x.section}</td>
+        <td>${x.date}</td>
         <td>
-            <label for="present" class="attendance active ispresent">Present</label>
+            <label for="present" class="attendance active ${x.status_class}">${
+      x.status_name
+    }</label>
         </td>
       </tr>`;
   });
 }
-function lableHandler(e) {
-  let attendanceDiv = e.currentTarget.parentNode;
-  let lableElem = attendanceDiv.getElementsByClassName("attendance");
-  for (let i = 0; i < lableElem.length; i++) {
-    let x = lableElem[i];
-    if (x === e.currentTarget) {
-      x.classList.add("active");
-    } else {
-      x.classList.remove("active");
-    }
-  }
-}
+// function lableHandler(e) {
+//   let attendanceDiv = e.currentTarget.parentNode;
+//   let lableElem = attendanceDiv.getElementsByClassName("attendance");
+//   for (let i = 0; i < lableElem.length; i++) {
+//     let x = lableElem[i];
+//     if (x === e.currentTarget) {
+//       x.classList.add("active");
+//     } else {
+//       x.classList.remove("active");
+//     }
+//   }
+// }
 //Save Form
-document
-  .getElementById("addButtonAttendance")
-  .addEventListener("click", saveHandler);
-function saveHandler(e) {
-  let date = document
-    .getElementById("saveAttendanceDate")
-    .value.replaceAll("-", "/");
-  let className = document.querySelector(".updateClassName").value;
-  let secName = document.querySelector(".updateSecName").value;
-  let lables = document.getElementsByClassName("attendance active");
-  let list = [];
-  let attendance = {};
-  let formData = new FormData();
-  for (let i = 0; i < lables.length; i++) {
-    let x = lables[i];
-    let studentId = x.dataset.studentId;
-    let attenadanceStatus =
-      x.innerText === "Present"
-        ? 1
-        : x.innerText === "Absent"
-        ? 2
-        : x.innerText === "Sick-Leave"
-        ? 3
-        : x.innerText === "Half-Day"
-        ? 4
-        : null;
-    attendance = {
-      student_id: studentId,
-      class_id: className,
-      section_id: secName,
-      attendance_status: attenadanceStatus,
-      attendance_date: date,
-    };
-    // formData.append("attList", attendance);
-    list.push(attendance);
-  }
-  let newList = JSON.stringify(list);
-  formData.append("attList", newList);
-  // console.log(formData);
-  formData.append("action", "addAttendance");
-  axios.post("action.php", formData).then(({ data, status }) => {
-    if (status === 200) {
-      snackBarFunc(data);
-    }
-  });
+// document
+//   .getElementById("addButtonAttendance")
+//   .addEventListener("click", saveHandler);
+// function saveHandler(e) {
+//   let date = document
+//     .getElementById("saveAttendanceDate")
+//     .value.replaceAll("-", "/");
+//   let className = document.querySelector(".updateClassName").value;
+//   let secName = document.querySelector(".updateSecName").value;
+//   let lables = document.getElementsByClassName("attendance active");
+//   let list = [];
+//   let attendance = {};
+//   let formData = new FormData();
+//   for (let i = 0; i < lables.length; i++) {
+//     let x = lables[i];
+//     let studentId = x.dataset.studentId;
+//     let attenadanceStatus =
+//       x.innerText === "Present"
+//         ? 1
+//         : x.innerText === "Absent"
+//         ? 2
+//         : x.innerText === "Sick-Leave"
+//         ? 3
+//         : x.innerText === "Half-Day"
+//         ? 4
+//         : null;
+//     attendance = {
+//       student_id: studentId,
+//       class_id: className,
+//       section_id: secName,
+//       attendance_status: attenadanceStatus,
+//       attendance_date: date,
+//     };
+//     // formData.append("attList", attendance);
+//     list.push(attendance);
+//   }
+//   let newList = JSON.stringify(list);
+//   formData.append("attList", newList);
+//   // console.log(formData);
+//   formData.append("action", "addAttendance");
+//   axios.post("action.php", formData).then(({ data, status }) => {
+//     if (status === 200) {
+//       snackBarFunc(data);
+//     }
+//   });
 
-  // console.log(secName.value);
-  // console.log(date.value.replaceAll("-", "/"));
-  // console.log(lables[0].dataset.studentId);
-}
+//   // console.log(secName.value);
+//   // console.log(date.value.replaceAll("-", "/"));
+//   // console.log(lables[0].dataset.studentId);
+// }
 // //addform submit
 // document.getElementById("addForm").addEventListener("submit", addFormSubmit);
 // function addFormSubmit(e) {
 //   e.preventDefault();
 //   let addSubmitBtn = document.getElementById("addClassSubmit");
 //   addSubmitBtn.style.cursor = "not-allowed";
-//   let addFormData = new FormData(e.target);
-//   //   console.log(addFormData);
-//   addFormData.append("action", "addSubjects");
-//   axios.post("action.php", addFormData).then(({ data, status }) => {
+//   let searchFormData = new FormData(e.target);
+//   //   console.log(searchFormData);
+//   searchFormData.append("action", "addSubjects");
+//   axios.post("action.php", searchFormData).then(({ data, status }) => {
 //     fetchFunc();
 //     let addModalForm = document.getElementById("addModal");
 //     addSubmitBtn.style.cursor = "pointer";
@@ -202,18 +209,18 @@ function saveHandler(e) {
 // }
 
 //DELETE Subject
-function deleteTeachers(e) {
-  let deleteTr = e.currentTarget.parentNode.parentNode.parentNode;
-  let subjectId = deleteTr.children[0].innerText;
-  let formData = new FormData();
-  formData.append("action", "deleteSubjects");
-  formData.append("id", subjectId);
-  axios.post("action.php", formData).then(({ status }) => {
-    if (status === 200) {
-      fetchFunc();
-    }
-  });
-}
+// function deleteTeachers(e) {
+//   let deleteTr = e.currentTarget.parentNode.parentNode.parentNode;
+//   let subjectId = deleteTr.children[0].innerText;
+//   let formData = new FormData();
+//   formData.append("action", "deleteSubjects");
+//   formData.append("id", subjectId);
+//   axios.post("action.php", formData).then(({ status }) => {
+//     if (status === 200) {
+//       fetchFunc();
+//     }
+//   });
+// }
 
 /////test////
 // document

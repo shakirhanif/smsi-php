@@ -362,5 +362,24 @@ public function updateSections($name,$id){
                 echo "attendance already taken";
             }
         }
+// search attendance Report
+        public function searchAttendanceReport($class,$section,$student,$date){
+            $query="select students.name as name,students.roll_no as rollno,classes.name as class, sections.section,attendance_status.name as status_name,attendance_status.status as status_class,attendance.attendance_date as date from attendance 
+            left join students on attendance.student_id=students.id left join classes on attendance.class_id=classes.id left join sections on attendance.section_id=sections.section_id left join attendance_status on attendance.attendance_status=attendance_status.id";
+            if ($student!=="select" AND $date!=="") {
+                $query .= " where students.id=$student AND attendance.attendance_date='$date'";
+                // echo $query;
+            }else if($student!=="select"){
+                $query .= " where students.id=$student";
+                // echo $query;
+            }else if($date!==""){
+                $query .= " where attendance.attendance_date="."'$date'";
+            }
+            $conn=$this->Conn;
+            $search=$conn->prepare($query);
+            $search->execute();
+            $rows=$search->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($rows);
+        }
     }
 ?>

@@ -425,7 +425,6 @@ textarea {
 .attendance {
   padding: 0 5px;
   border-radius: 5px;
-  cursor: pointer;
 }
 .attendance:hover {
   background-color: #aaa8a8;
