@@ -54,6 +54,18 @@ if(isset($_POST['action']) && $_POST['action']=='deleteStudent'){
     unlink("upload/$photo");
     $sch->deleteStudent($_POST['id']);
 }
+//List StudentsForm
+if(isset($_POST['action']) && $_POST['action']=='listStudentsForm'){
+    $classId="";
+    $secId="";
+    if (isset($_POST['classId'])) {
+        $classId=$_POST['classId'];
+    }
+    if (isset($_POST['secId'])) {
+        $secId=$_POST['secId'];
+    }
+    $sch->listStudentsForm($classId,$secId);
+}
 //List Sections
 if(isset($_POST['action']) && $_POST['action']=='listSections'){
     $sch->listSections();
@@ -97,7 +109,7 @@ if(isset($_POST['action']) && $_POST['action']=='addSubjects'){
     // echo $_POST['name'];
     $sch->addSubjects($_POST['subject'],$_POST['type'],$_POST['code']);
 }
-//update Teachers
+//update subjects
 if(isset($_POST['action']) && $_POST['action']=='updateSubjects'){
     $sch->updateSubjects($_POST['subject'],$_POST['type'],$_POST['code'],$_POST['id']);
 }

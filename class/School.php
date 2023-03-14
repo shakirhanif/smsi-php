@@ -108,6 +108,22 @@
             $row=$query->fetch(PDO::FETCH_ASSOC);
             echo json_encode($row);
         }
+// List Students for attendance form
+        public function listStudentsForm($classId,$secId){
+            $query="select name,id from students";
+            if ($classId!=="" AND $secId!=="") {
+                $query="select name,id from students where class=$classId AND section=$secId";
+            }else if($classId!==""){
+                $query="select name,id from students where class=$classId";
+            }else if($secId!==""){
+                $query="select name,id from students where section=$secId";
+            }
+            $conn=$this->Conn;
+            $query=$conn->prepare($query);
+            $query->execute();
+            $rows=$query->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($rows);
+        }
 // get Student photo for delete
         public function getStudentPhoto($id){
             $conn=$this->Conn;

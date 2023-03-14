@@ -85,7 +85,7 @@ $school->adminLoginstatus();
           <span class="tooltip">Atendance</span>
         </li>
         <li>
-          <a href="#">
+          <a href="attendance_report.php">
           <i class='bx bx-line-chart' ></i>
             <span class="link_names">Attendance Report</span>
           </a>
