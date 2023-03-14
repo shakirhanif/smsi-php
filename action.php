@@ -128,6 +128,6 @@ if(isset($_POST['action']) && $_POST['action']=='addAttendance'){
 }
 //search attendance report
 if(isset($_POST['action']) && $_POST['action']=='searchAttendanceReport'){
-    $sch->searchAttendanceReport($_POST['class'],$_POST['section'],$_POST['student'],$_POST['date']);
+    $sch->searchAttendanceReport($_POST);
 }
 ?>

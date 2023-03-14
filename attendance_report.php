@@ -9,7 +9,7 @@
       <label>
         Class
         <select id="dropdown" class="updateClassName" name="class">
-          <option value="">Select</option>
+          <option value="select">Select</option>
         </select>
       </label>
     </div>
@@ -17,7 +17,7 @@
       <label>
         Section
         <select id="dropdown" class="updateSecName" name="section">
-        <option value="">Select</option>
+        <option value="select">Select</option>
         </select>
       </label>
     </div>
@@ -25,7 +25,7 @@
       <label>
         Student Name
         <select id="dropdown" class="updateStudentName" name="student">
-        <option value="">Select</option>
+        <option value="select">Select</option>
         </select>
       </label>
     </div>
