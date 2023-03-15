@@ -31,11 +31,6 @@ $school->adminLoginstatus();
       </div>
       <ul class="nav_list">
         <li>
-          <i class="bx bx-search"></i>
-          <input type="text" placeholder="Search..." />
-          <span class="tooltip">Search</span>
-        </li>
-        <li>
           <a href="index.php">
             <i class="bx bx-grid-alt"></i>
             <span class="link_names">Dashboard</span>
@@ -95,11 +90,14 @@ $school->adminLoginstatus();
     </div>
     <div class="navbar-div" >
         <div class="navbar">
-          <div class="nav-title">
+          <!-- <div class="nav-title">
             School Management<span> System</span>
-          </div>
-          <div class="head-user">
-            <?php echo $_SESSION['first_name']; ?>
+          </div> -->
+          <div class="head-user" style="margin-left: auto;margin-right: 100px; position:relative;cursor: pointer;">
+            <div id="headUserName" style="display: flex; align-items: center;"> <div><?php echo $_SESSION['first_name']; ?></div> <img src="assets/avatar.jpg" alt="" style="height: 40px;margin: 0 10px;border-radius: 50%;border: 1px solid gray;"> </div>
+            <div id="dropDownMenu">
+              <a class="dropItem" href="logout.php">Logout</a>
+            </div>
           </div>
         </div>
       </div>

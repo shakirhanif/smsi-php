@@ -1,11 +1,6 @@
 let btn = document.querySelector("#btn");
 let sidebar = document.querySelector(".sidebar");
-let searchBtn = document.querySelector(".bx-search");
-
 btn.onclick = function () {
-  sidebar.classList.toggle("active");
-};
-searchBtn.onclick = function () {
   sidebar.classList.toggle("active");
 };
 // snack bar
@@ -23,4 +18,22 @@ function snackBarFunc(
   setTimeout(function () {
     x.className = x.className.replace("show", "");
   }, 3000);
+}
+//drop down menu profile func
+dropDownFullFunc();
+function dropDownFullFunc() {
+  document.addEventListener("click", docEventListener);
+  function docEventListener(event) {
+    if (
+      event.target === document.getElementById("headUserName") ||
+      event.target === document.getElementById("headUserName").children[0] ||
+      event.target === document.getElementById("headUserName").children[1] ||
+      event.target === document.getElementById("dropDownMenu") ||
+      event.target.parentNode === document.getElementById("dropDownMenu")
+    ) {
+      document.getElementById("dropDownMenu").style.display = "block";
+    } else {
+      document.getElementById("dropDownMenu").style.display = "none";
+    }
+  }
 }

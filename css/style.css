@@ -182,9 +182,10 @@ body {
   left: 60px;
   right: 0;
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #fff;
   z-index: 10;
-  border-bottom: #1d1b31 solid 1px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border-bottom: #1d1b31 solid 1px; */
 }
 .sidebar.active ~ .navbar-div {
   left: 240px;
@@ -275,4 +276,23 @@ body {
     bottom: 0;
     opacity: 0;
   }
+}
+/* Drop Down Menu */
+#dropDownMenu {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 100%;
+  padding: 10px;
+  border-radius: 0 10px 10px 10px;
+  z-index: 20;
+  background-color: #9c9c9c;
+  display: none;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.dropItem {
+  margin: 7px 0;
+  cursor: pointer;
+  color: #11101d;
+  text-decoration: none;
 }

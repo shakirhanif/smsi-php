@@ -39,7 +39,6 @@
             <button id="searchAttendanceButton">Search</button>
     </div>
 </form>
-
 <!-- section and class form end -->
 <div>
 <table class="responstable" id="classTable">
