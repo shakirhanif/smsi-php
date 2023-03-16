@@ -130,4 +130,8 @@ if(isset($_POST['action']) && $_POST['action']=='addAttendance'){
 if(isset($_POST['action']) && $_POST['action']=='searchAttendanceReport'){
     $sch->searchAttendanceReport($_POST);
 }
+//attendance List
+if(isset($_POST['action']) && $_POST['action']=='attendanceValues'){
+    $sch->attendanceValues($_POST['dateFirst'],$_POST['dateLast']);
+}
 ?>

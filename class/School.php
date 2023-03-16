@@ -395,5 +395,16 @@ public function updateSections($name,$id){
             $rows=$search->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rows);
         }
+    //attendance values
+        public function attendanceValues($dateFirst,$dateLast){
+            $conn=$this->Conn;
+            $query=$conn->prepare("SELECT attendance_date,attendance_status FROM attendance where attendance_date <= :dateLast and attendance_date > :dateFirst and attendance_status=1;");
+            $query->execute([
+                ':dateFirst'=>$dateFirst,
+                ':dateLast'=>$dateLast,
+            ]);
+            $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($rows);
+        }
     }
 ?>
