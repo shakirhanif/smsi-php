@@ -18,24 +18,23 @@
                 Attendance of School for last 15 days
             </p>
             <p class="link">Click to go to Attendence Report</p>
-        </div></a
-        >
+        </div></a>
         <div class="card--border"></div>
     </div>
     </div>
     <div class="card-container">
         <div class="card">
-            <a href="hottub">
+            <a href="attendance.php">
         <div class="card--display">
-        <i class='bx bx-male'>Take Attendance</i>
+        <i class='bx bx-check-square' style="margin-right: 10px;">Take Attendance</i>
             <h2></h2>
         </div>
         <div class="card--hover">
-            <h2>Teachers</h2>
+            <h2>Take attendance</h2>
             <p>
-                for more details about teachers click
+                click to take attendance
             </p>
-            <p class="link">Click to see Teachers</p>
+            <p class="link">attendance</p>
         </div></a
         >
         <div class="card--border"></div>
@@ -43,7 +42,25 @@
     </div>
     <div class="card-container">
         <div class="card">
-            <a href="hottub">
+            <a href="students.php">
+        <div class="card--display">
+        <i class='bx bx-user-pin'>Admit Students</i>
+            <h2></h2>
+        </div>
+        <div class="card--hover">
+            <h2>Admit students</h2>
+            <p>
+                click for new student admission, view and edit students
+            </p>
+            <p class="link">Students</p>
+        </div></a
+        >
+        <div class="card--border"></div>
+    </div>
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <a href="teachers.php">
         <div class="card--display">
         <i class='bx bx-male'>Teachers</i>
             <h2>Teachers</h2>
@@ -61,17 +78,17 @@
     </div>
     <div class="card-container">
         <div class="card">
-            <a href="hottub">
+            <a href="classes.php">
         <div class="card--display">
-        <i class='bx bx-male'>Teachers</i>
-            <h2>Teachers</h2>
+        <i class='bx bx-group'>Classes</i>
+            <h2></h2>
         </div>
         <div class="card--hover">
-            <h2>Teachers</h2>
+            <h2>Classes</h2>
             <p>
-                for more details about teachers click
+                Click to view, edit or add classes
             </p>
-            <p class="link">Click to see Teachers</p>
+            <p class="link">classes</p>
         </div></a
         >
         <div class="card--border"></div>
