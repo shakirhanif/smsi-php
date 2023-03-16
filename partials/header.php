@@ -35,56 +35,56 @@ $school->adminLoginstatus();
             <i class="bx bx-grid-alt"></i>
             <span class="link_names">Dashboard</span>
           </a>
-          <span class="tooltip">Dashboard</span>
+          <!-- <span class="tooltip">Dashboard</span> -->
         </li>
         <li>
           <a href="students.php">
           <i class='bx bx-user-pin'></i>
             <span class="link_names">Students</span>
           </a>
-          <span class="tooltip">Students</span>
+          <!-- <span class="tooltip">Students</span> -->
         </li>
         <li>
           <a href="classes.php">
           <i class='bx bx-group'></i>
             <span class="link_names">Classes</span>
           </a>
-          <span class="tooltip">Classes</span>
+          <!-- <span class="tooltip">Classes</span> -->
         </li>
         <li>
           <a href="sections.php">
           <i class='bx bxs-shapes'></i>
             <span class="link_names">Sections</span>
           </a>
-          <span class="tooltip">Sections</span>
+          <!-- <span class="tooltip">Sections</span> -->
         </li>
         <li>
           <a href="teachers.php">
           <i class='bx bx-male'></i>
             <span class="link_names">Teachers</span>
           </a>
-          <span class="tooltip">Teachers</span>
+          <!-- <span class="tooltip">Teachers</span> -->
         </li>
         <li>
           <a href="subjects.php">
           <i class='bx bx-book'></i>
             <span class="link_names">Subjects</span>
           </a>
-          <span class="tooltip">Subjects</span>
+          <!-- <span class="tooltip">Subjects</span> -->
         </li>
         <li>
           <a href="attendance.php">
           <i class='bx bx-check-square'></i>
             <span class="link_names">Attendance</span>
           </a>
-          <span class="tooltip">Atendance</span>
+          <!-- <span class="tooltip">Atendance</span> -->
         </li>
         <li>
           <a href="attendance_report.php">
           <i class='bx bx-line-chart' ></i>
             <span class="link_names">Attendance Report</span>
           </a>
-          <span class="tooltip">Attendance Report</span>
+          <!-- <span class="tooltip">Attendance Report</span> -->
         </li>
       </ul>
     </div>
