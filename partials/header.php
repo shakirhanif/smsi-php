@@ -27,7 +27,7 @@ $school->adminLoginstatus();
           <i class="bx bxs-school" style="font-size: 30px"></i>
           <div class="logoname" style="margin-left: 5px">SMS</div>
         </div>
-        <i class="bx bx-menu-alt-right" id="btn" style="font-size: 25px"></i>
+        <!-- <i class="bx bx-menu-alt-right" id="btn" style="font-size: 25px"></i> -->
       </div>
       <ul class="nav_list">
         <li>
@@ -93,7 +93,7 @@ $school->adminLoginstatus();
           <!-- <div class="nav-title">
             School Management<span> System</span>
           </div> -->
-          <div class="head-user" style="margin-left: auto;margin-right: 100px; position:relative;cursor: pointer;">
+          <div class="head-user" style="margin-left: auto; position:relative;cursor: pointer;">
             <div id="headUserName" style="display: flex; align-items: center;"> <div><?php echo $_SESSION['first_name']; ?></div> <img src="assets/avatar.jpg" alt="" style="height: 40px;margin: 0 10px;border-radius: 50%;border: 1px solid gray;"> </div>
             <div id="dropDownMenu">
               <a class="dropItem" href="logout.php">Logout</a>
